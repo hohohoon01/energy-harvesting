@@ -86,6 +86,15 @@
 </div>
 <aside class="notes">“건전지를 넣지 않았는데 바퀴가 빛나는 킥보드 본 적 있나요?” 학생 경험을 1~2명 듣습니다. 정답을 바로 말하지 않고, 바퀴가 굴러가는 ‘움직임’이 단서라는 것만 짚습니다.</aside>
 </section>
+<section class="slide" id="video0" data-transition="fade" style="background:#EAF4FB;color:#1F2A44;font-family:'Noto Sans KR', Arial, sans-serif;padding:104px 128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px"><p style="font-size:28px;font-weight:700;color:#1F2A44;background:#FFC93C;padding:6px 24px;border-radius:999px">영상 보기</p><h2 style="font-family:'Jua', 'Noto Sans KR', sans-serif;font-weight:400;font-size:72px;line-height:1.15;color:#1F2A44">영상으로 먼저 만나 보자!</h2></div><div style="display:flex;flex-direction:row;gap:56px;align-items:center">
+<div style="width:1100px;display:flex;flex-direction:column;gap:16px;align-items:center"><iframe class="yt" data-src="https://www.youtube-nocookie.com/embed/y2IjhZJgD28?rel=0" title="에너지 하베스팅 도입 영상" style="width:1100px;height:619px;border:0;border-radius:32px;background:#1F2A44;box-shadow:0 12px 0 rgba(31,42,68,0.12)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p style="font-size:26px;color:#4A5568">재생이 안 되면 <a target="_blank" rel="noopener" href="https://youtu.be/y2IjhZJgD28">유튜브에서 열기</a> · 영상을 누른 뒤에는 화면 바깥을 눌러야 키보드로 넘어가요</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px;align-items:center">
+<img src="images/m_led_wow.png" alt="반짝이" style="width:220px;height:264px;object-fit:contain;">
+<p style="font-family:'Jua', 'Noto Sans KR', sans-serif;font-weight:400;font-size:44px;color:#1F2A44;text-align:center;line-height:1.3;background:#FFF1C9;padding:24px 28px;border-radius:28px">영상 속 전기는<br>어디서 만들어질까?</p>
+</div></div>
+<aside class="notes">에너지 하베스팅을 설명하기 전에 보여 주는 도입 영상입니다. 링크: https://youtu.be/y2IjhZJgD28 . 보기 전에 “영상 속에서 전기는 어디서 만들어질까?”를 생각하며 보게 하고, 본 뒤 1~2명의 답을 듣고 다음 장의 ‘에너지 하베스팅’ 정의로 넘어갑니다.</aside>
+</section>
 <section class="slide" id="harvest" data-transition="fade" style="background:#1F2A44;color:#FFF8EC;font-family:'Noto Sans KR', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px">
 <p style="font-size:28px;font-weight:700;color:#1F2A44;background:#FFC93C;padding:6px 24px;border-radius:999px;">KEYWORD</p>
 <h1 style="font-family:'Jua', 'Noto Sans KR', sans-serif;font-weight:400;font-size:140px;line-height:1.1;color:#FFC93C;text-align:center">에너지 하베스팅</h1>
@@ -304,7 +313,7 @@
 <div id="notepanel"></div>
 <div id="hud">
   <button id="prev" title="이전 (←)">◀</button>
-  <span id="count">1 / 37</span>
+  <span id="count">1 / 38</span>
   <button id="next" title="다음 (→, 스페이스)">▶</button>
   <button id="notesBtn" title="발표자 노트 (N)">노트</button>
   <button id="fsBtn" title="전체 화면 (F)">전체화면</button>
@@ -330,6 +339,7 @@
     cur = Math.max(0, Math.min(slides.length - 1, i));
     slides.forEach((s, k) => s.classList.toggle('active', k === cur));
     builds(cur).forEach(b => b.classList.toggle('shown', !!revealAll));
+    document.querySelectorAll('iframe.yt').forEach(f => { const on = slides[cur].contains(f); if (on && !f.src) f.src = f.dataset.src; if (!on && f.src) f.removeAttribute('src'); });
     bar.style.width = ((cur + 1) / slides.length * 100) + '%';
     count.textContent = (cur + 1) + ' / ' + slides.length;
     const n = slides[cur].querySelector('.notes');
